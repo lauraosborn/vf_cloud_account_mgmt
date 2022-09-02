@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="1" failures="0" skipped="0" tests="1" time="1.467" timestamp="2022-09-02T17:36:00.272421" hostname="Lauras-MBP-2.broadband"><testcase classname="" name="test" time="0.000"><error message="collection failure">test.py:3: in &lt;module&gt;
+    from app import create_app
+E   ModuleNotFoundError: No module named 'app'</error></testcase></testsuite></testsuites>
