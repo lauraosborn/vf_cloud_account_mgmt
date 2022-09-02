@@ -1,6 +1,21 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
+
 steps:
     - task: UsePythonVersion@0
-      inputs:
+       inputs:
          versionSpec: '$(pythonVersion)'
          displayName: 'Use Python $(pythonVersion)'
     - script: |
@@ -8,12 +23,6 @@ steps:
          source antenv/bin/activate
          python -m pip install --upgrade pip
          pip install setup
-
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(pythonVersion)'
-    addToPath: true
-    architecture: 'x64'
          pip install -r requirements.txt
        workingDirectory: $(projectRoot)
        displayName: "Install requirements"
@@ -46,7 +55,7 @@ strategy:
         displayName: 'Use Python version'
 
       - task: AzureWebApp@1
-        displayName: 'Deploy Azure Web App : {{ cloud-account-mgmt-app }}'
+        displayName: 'Deploy Azure Web App : {{ webAppName }}'
         inputs:
           azureSubscription: $(azureServiceConnectionId)
           appName: $(webAppName)
