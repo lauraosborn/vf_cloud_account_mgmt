@@ -1,4 +1,10 @@
 # Python package
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(11c970d2-57ef-466b-873b-857d1a31af33)'
+    appType: 'webAppLinux'
+    appName: 'cloud-account-mgmt-app'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 # Create and test a Python package on multiple Python versions.
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
