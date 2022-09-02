@@ -69,7 +69,7 @@ def login():
             if database_password == password and database_email == email and database_type == "User":
                 return redirect(url_for('cloud_accounts'))
             elif database_password == password and database_email == email and database_type == "Admin":
-                return redirect(url_for('admin_users'))
+                return redirect(url_for('account_delete'))
             else:
                 flash("Invalid password")
                 return render_template('login.html')
@@ -101,8 +101,8 @@ def cloud_accounts():
     data = cursor.fetchall()
     return render_template('cloud_accounts.html', value=data) 
 
-@app.route('/admin_users')
-def admin_users():
+@app.route('/account_delete', methods = ["GET"])
+def account_delete():
     import pymysql
     try:
         conn = pymysql.connect(
@@ -122,12 +122,9 @@ def admin_users():
     cursor = conn.cursor()
     cursor.execute("select * from cloud_accounts") 
     data = cursor.fetchall()
-    return render_template('cloud_accounts.html', value=data) 
-
-@app.route('/user_delete', methods = ["GET"])
-def user_delete():
+    return render_template('account_delete.html', value=data) 
     if request.form['submit'] == 0:
-        return render_template('admin_users.html') 
+        return render_template('account_delete.html') 
     else:
         conn = pymysql.connect(
             host= 'cloud-accounts.mysql.database.azure.com', 
