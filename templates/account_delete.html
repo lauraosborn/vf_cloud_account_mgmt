@@ -92,7 +92,7 @@ li a {
 }
 
 .textwrap {
-    text-align: right;
+    text-align: center;
     margin-right: 1vw;
 }
 
@@ -110,6 +110,18 @@ li a {
     text-indent: 8px;
     line-height: 1.5;
     z-index: 2;
+}
+
+.table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 15px;
+    border: grey;
+    background-color: rgb(250, 249, 249);
+    z-index: 2;
+    line-height: 40px;
+    text-align: center;
 }
 </style>
 </head>
@@ -137,9 +149,48 @@ li a {
 
 <div class="container">
     <img src="https://vfcloudaccountstorage.blob.core.windows.net/cloud-account-management-images/Picture 1.png" class="position">
-    <p class="textwrap" style="color: red; font-size: 16px; margin-top: 20px; margin-bottom: 20px;"><b>User delete page</b></p>
-    <p class="textwrap" style="font-size: 14.5px;"><a href="users.html">Click here to view Vodafone's current view of cloud accounts</a></p>
-</div>  
+    <p class="textwrap" style="color: red; font-size: 16px; margin-top: 20px; margin-bottom: 20px;"><b>Vodafone Cloud Account Management Internal Microsite</b></p>
+    <p class="textwrap" style="font-size: 14.5px;">You are logged in as a user, enabling 'delete' functionality. Please check with account owners before removing accounts.</p>
+</div>
+
+<div class="textwrap">
+    <a href="{{ url_for('new_account') }}">
+        <br />
+        <br />
+        <h1 class="textwrap" style="font-size: 14.5px;"></h1>Need to add a new account?</h1>
+        <br />
+        <br />
+    </a>
+</div>
+
+<table class="table"> 
+    <thead> 
+    <tr> 
+        <th style="width:16.6%">Account ID</th> 
+        <th style="width:16.6%">Account Name</th>
+        <th style="width:16.6%">Cloud Service Provider</th>
+        <th style="width:16.6%">Account Owner</th>
+        <th style="width:16.6%">Account Contact</th>
+        <th style="width:16.6%">Notes</th>
+        <th style="width:16.6%">Delete Account</th>
+    </tr> 
+    </thead> 
+    <tbody> 
+        {% for row in value %}  
+            <tr> 
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td> 
+                <td>{{row[2]}}</td> 
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <td>{{row[6]}}<form method='POST'>
+                    <input type=submit name="delete" value="Delete"></input>
+                </form></td>
+            </tr> 
+        {% endfor %} 
+    </tbody> 
+</table>
 
 <meta name="viewport" content="width=device-width, initial-scale=100">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
