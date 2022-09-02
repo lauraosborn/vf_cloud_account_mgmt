@@ -8,6 +8,12 @@ steps:
          source antenv/bin/activate
          python -m pip install --upgrade pip
          pip install setup
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(pythonVersion)'
+    addToPath: true
+    architecture: 'x64'
          pip install -r requirements.txt
        workingDirectory: $(projectRoot)
        displayName: "Install requirements"
