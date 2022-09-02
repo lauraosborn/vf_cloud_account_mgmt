@@ -11,20 +11,12 @@ steps:
   inputs:
     versionSpec: '3.6'
 
-- task: PythonScript@0
-  inputs:
-    scriptSource: inline
-    script: |
-      import sys
-      print ('Executing script file is:', str(sys.argv[0]))
-      print ('The arguments are:', str(sys.argv))
-      import argparse
-      parser = argparse.ArgumentParser()
-      parser.add_argument("--world", help="Provide the name of the world to greet.")
-      args = parser.parse_args()
-      print ('Hello ', args.world)
-    arguments: --world Venus
-
 - script: python -m pip install --upgrade pip setuptools wheel
   displayName: 'Install tools'
 
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(11c970d2-57ef-466b-873b-857d1a31af33)'
+    appType: 'webAppLinux'
+    appName: 'cloud-account-mgmt-app'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
