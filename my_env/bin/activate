@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/lauraosborn/Library/Mobile Documents/com~apple~CloudDocs/QA/Level 6/Software Engineering with Agile/vf_cloud_account_mgmt/my_env"
+VIRTUAL_ENV="/Users/lauraosborn/Library/Mobile Documents/com~apple~CloudDocs/QA/Level 6/Software Engineering with DevOps/vf_cloud_account_mgmt/my_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
